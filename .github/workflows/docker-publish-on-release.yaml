@@ -1,0 +1,22 @@
+name: Docker
+
+on:
+  push:
+    branches:
+      - release*
+
+    # Publish `v1.2.3` tags as releases.
+    tags:
+      - v*
+
+env:
+  DOCKER_REGISTRY_USERNAME: ${{ secrets.DOCKER_REGISTRY_USERNAME }}
+  DOCKER_REGISTRY_PASSWORD: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: make
