@@ -28,4 +28,4 @@ ls -l $DRIVER_ISTALLATION_LOCATION
 
 # this is a workaround to prevent the container from exiting 
 # and k8s restarting the daemonset pod
-while true; do sleep 2; done
+while true; do sleep 3600; done
