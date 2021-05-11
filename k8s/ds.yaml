@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: minio-flex-volume-distribution
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      app: horizon
+      component: minio-flex-volume-distribution
+  template:
+    metadata:
+      name: minio-flex-volume-distribution
+      labels:
+        app: horizon
+        component: minio-flex-volume-distribution
+    spec:
+      containers:
+        - image: "datavocals/minio-flex-volume-distro:release-0.1"
+          name: minio-flex-volume-distribution
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - mountPath: /flexmnt
+              name: flexvolume-mount
+      volumes:
+        - name: flexvolume-mount
+          hostPath:
+            path: /usr/libexec/kubernetes/kubelet-plugins/volume/exec/
