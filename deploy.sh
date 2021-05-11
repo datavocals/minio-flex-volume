@@ -21,6 +21,7 @@ do
 
     cp "/$DRIVER/$DRIVER" "$driver_dir/.$DRIVER/$DRIVER"
     mv -f "$driver_dir/.$DRIVER/$DRIVER" "$driver_dir/"
+    chmod -R 744 $driver_dir
 done
 
 echo "Listing installed drivers:"
