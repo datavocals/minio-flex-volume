@@ -1,0 +1,7 @@
+# use busybox as fundamental image
+FROM busybox:1.33.1
+
+COPY drivers/minio/minio.sh /minio/minio
+COPY deploy.sh /deploy.sh
+
+CMD /bin/bash /deploy.sh
