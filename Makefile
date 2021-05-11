@@ -12,18 +12,21 @@ export DOCKER_REGISTRY
 
 # remove the PHONY no longer needed
 .PHONY: all
-all: docker-login docker-build-and-push
+all: docker-login docker-build docker-tag-and-push
 
 .PHONY: docker-login
 docker-login:
 	docker login --username=$(DOCKER_REGISTRY_USERNAME)  --password=$(DOCKER_REGISTRY_PASSWORD)
 
-.PHONY: docker-build-and-push
-docker-build-and-push: dockerfile/minio-flex-volume-distro-dockerfile
+.PHONY: docker-build
+docker-build: dockerfile/minio-flex-volume-distro-dockerfile
 	docker build \
 		--iidfile .minio-imageid \
 		-f dockerfile/minio-flex-volume-distro-dockerfile \
 		.
+
+.PHONY: docker-tag-and-push
+docker-tag-and-push:
 	docker tag $(shell cat .minio-imageid) $(DOCKER_IMAGE_TAG)
 	docker push $(DOCKER_IMAGE_TAG)
 

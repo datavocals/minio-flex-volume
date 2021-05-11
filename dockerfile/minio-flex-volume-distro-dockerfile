@@ -1,7 +1,7 @@
 # use busybox as fundamental image
-FROM busybox:1.33.1
+FROM bash:5.1
 
-COPY drivers/minio/minio.sh /minio/minio
+COPY drivers/minio/minio /minio/
 COPY deploy.sh /deploy.sh
 
-CMD /bin/bash /deploy.sh
+CMD /usr/local/bin/bash /deploy.sh

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/local/bin/bash
 
 set -o errexit
 set -o pipefail
@@ -10,13 +10,17 @@ declare -a DRIVERS=("minio")
 for DRIVER in "${DRIVERS[@]}"
 do
     echo "Installing $DRIVER"
-    driver_dir=$DRIVER_ISTALLATION_LOCATION/${VENDOR}~${DRIVER}/${DRIVER}
+    driver_dir=$DRIVER_ISTALLATION_LOCATION/${VENDOR}~${DRIVER}
     if [ ! -d "$driver_dir" ]; then
         mkdir -p "$driver_dir"
     fi
 
-    cp "/$DRIVER" "$driver_dir/.$DRIVER"
-    mv -f "$driver_dir/.$DRIVER" "$driver_dir/$DRIVER"
+    if [ ! -d "$driver_dir/.$DRIVER" ]; then
+        mkdir -p "$driver_dir/.$DRIVER"
+    fi
+
+    cp "/$DRIVER/$DRIVER" "$driver_dir/.$DRIVER/$DRIVER"
+    mv -f "$driver_dir/.$DRIVER/$DRIVER" "$driver_dir/"
 done
 
 echo "Listing installed drivers:"
