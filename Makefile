@@ -3,7 +3,7 @@ DOCKER_REGISTRY_USERNAME = $(or $(shell printenv DOCKER_REGISTRY_USERNAME), )
 DOCKER_REGISTRY_PASSWORD = $(or $(shell printenv DOCKER_REGISTRY_PASSWORD), )
 DOCKER_REGISTRY = $(or $(shell printenv DOCKER_REGISTRY), datavocals)
 GIT_BRANCH = $(shell git rev-parse --abbrev-ref HEAD)
-DOCKER_IMAGE_TAG = $(DOCKER_REGISTRY)/minio:$(GIT_BRANCH)
+DOCKER_IMAGE_TAG = $(DOCKER_REGISTRY)/minio-flex-volume-distro:$(GIT_BRANCH)
 
 
 # https://www.gnu.org/software/make/manual/make.html#index-_002eEXPORT_005fALL_005fVARIABLES
